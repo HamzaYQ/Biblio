@@ -1,0 +1,9 @@
+installi laravel
+installi xampp
+7ol xampp w dir start l apache w mysql
+cliki 3la admin li 7da mysql 
+atla3 lk lpage dyal phpmyadmin hadi hiya li katchof fiha les bases de donnees li 3andk f pc
+dir creer une base de donnees w semmiha bibliodb
+moraha atd5l dossier dyal biblioback wt7oto f nfss dossier li fih dossier dyal l front
+atd5ol l vscode w t7ol terminal w bdel chemin l dossi dl back
+dir had la commande : php artisan migrate
