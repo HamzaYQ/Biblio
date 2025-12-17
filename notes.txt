@@ -7,3 +7,4 @@ dir creer une base de donnees w semmiha bibliodb
 moraha atd5l dossier dyal biblioback wt7oto f nfss dossier li fih dossier dyal l front
 atd5ol l vscode w t7ol terminal w bdel chemin l dossi dl back
 dir had la commande : php artisan migrate
+la matl3at lk ta chi erreur testi l back wch 5dam w dir had l commande : php artisan serve . had la commande hiya li katlonsi biha l backend b7al fl front mni kadir npm run dev 
