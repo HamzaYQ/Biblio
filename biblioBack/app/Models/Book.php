@@ -22,13 +22,11 @@ class Book extends Model
         'language',
         'description',
         'cover_url',
-        'total_copies',
     ];
 
     protected $casts = [
         'published_year' => 'integer',
         'pages' => 'integer',
-        'total_copies' => 'integer',
     ];
 
     public function publisher(): BelongsTo
@@ -54,5 +52,14 @@ class Book extends Model
     public function reservations(): HasMany
     {
         return $this->hasMany(Reservation::class, 'book_id');
+    }
+
+    /**
+     * Accessor pour calculer le nombre total d'exemplaires
+     * Utilisation : $book->total_copies
+     */
+    public function getTotalCopiesAttribute(): int
+    {
+        return $this->copies()->count();
     }
 }

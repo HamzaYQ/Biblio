@@ -11,14 +11,13 @@ class CreateBooksTable extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
-            $table->string('isbn')->unique()->nullable();
+            $table->string('isbn', 13)->unique()->nullable();
             $table->unsignedBigInteger('publisher_id')->nullable();
             $table->smallInteger('published_year')->nullable();
             $table->integer('pages')->nullable();
             $table->string('language')->nullable();
             $table->text('description')->nullable();
             $table->string('cover_url')->nullable();
-            $table->integer('total_copies')->default(0);
             $table->timestamps();
             $table->softDeletes();
 
