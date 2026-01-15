@@ -15,21 +15,20 @@ class CreateFinesTable extends Migration
             $table->decimal('amount', 10, 2);
             $table->text('reason')->nullable();
             $table->unsignedBigInteger('issued_by')->nullable();
-            $table->timestamp('issued_at');
+            $table->dateTime('issued_at')->useCurrent();
             $table->boolean('paid')->default(false);
-            $table->timestamp('paid_at')->nullable();
+            $table->dateTime('paid_at')->nullable();
             $table->enum('payment_method', ['cash', 'card', 'online', 'other'])->nullable();
             $table->string('payment_reference')->nullable();
             $table->unsignedBigInteger('handled_by')->nullable();
-            $table->string('reference')->nullable();
             $table->timestamps();
 
             $table->index(['user_id', 'paid']);
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
             $table->foreign('loan_id')->references('id')->on('loans')->onDelete('set null');
-            $table->foreign('issued_by')->references('id')->on('users')->onDelete('set null');
-            $table->foreign('handled_by')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('issued_by')->references('id')->on('staff')->onDelete('set null');
+            $table->foreign('handled_by')->references('id')->on('staff')->onDelete('set null');
         });
     }
 

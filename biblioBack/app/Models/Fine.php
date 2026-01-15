@@ -22,7 +22,6 @@ class Fine extends Model
         'payment_method',
         'payment_reference',
         'handled_by',
-        'reference',
     ];
 
     protected $casts = [
@@ -44,11 +43,11 @@ class Fine extends Model
 
     public function issuedBy(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'issued_by');
+        return $this->belongsTo(Staff::class, 'issued_by');
     }
 
     public function handledBy(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'handled_by');
+        return $this->belongsTo(Staff::class, 'handled_by');
     }
 }

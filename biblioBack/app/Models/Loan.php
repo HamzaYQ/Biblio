@@ -37,10 +37,10 @@ class Loan extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    // staff qui a émis le prêt
+    // bibliothécaire qui a émis le prêt
     public function issuedBy(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'issued_by');
+        return $this->belongsTo(Staff::class, 'issued_by');
     }
 
     // Si besoin : fine associée à ce prêt

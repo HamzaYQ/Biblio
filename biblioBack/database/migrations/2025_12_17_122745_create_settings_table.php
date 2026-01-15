@@ -20,7 +20,7 @@ class CreateSettingsTable extends Migration
         // Insert default policy values
         DB::table('settings')->insert([
             ['key' => 'default_loan_days', 'value' => '14', 'description' => 'Nombre de jours de prêt par défaut', 'created_at' => now(), 'updated_at' => now()],
-            ['key' => 'fine_per_day', 'value' => '0.50', 'description' => 'Montant de la pénalité par jour de retard (en euros)', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'fine_per_day', 'value' => '0.50', 'description' => 'Montant de la pénalité par jour de retard (en dirham marocain)', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'max_loans_per_user', 'value' => '5', 'description' => 'Nombre maximum de prêts simultanés par utilisateur', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'grace_days', 'value' => '0', 'description' => 'Nombre de jours de grâce avant application des pénalités', 'created_at' => now(), 'updated_at' => now()],
         ]);

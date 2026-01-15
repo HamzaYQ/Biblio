@@ -12,17 +12,19 @@ class CreateReservationsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('book_id');
             $table->unsignedBigInteger('user_id');
-            $table->timestamp('reserved_at');
-            $table->timestamp('expires_at')->nullable();
+            $table->dateTime('reserved_at')->useCurrent();
+            $table->dateTime('expires_at')->nullable();
             $table->integer('position')->nullable();
             $table->enum('status', ['pending', 'notified', 'fulfilled', 'cancelled', 'expired'])->default('pending');
-            $table->timestamp('notified_at')->nullable();
+            $table->dateTime('notified_at')->nullable();
             $table->timestamps();
 
             $table->foreign('book_id')->references('id')->on('books')->onDelete('restrict');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
 
             $table->index(['book_id', 'user_id']);
+            $table->index('status');
+            $table->index('expires_at');
         });
     }
 

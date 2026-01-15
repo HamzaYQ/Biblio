@@ -7,11 +7,10 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class Staff extends Authenticatable
 {
-    use HasFactory, Notifiable, SoftDeletes, HasApiTokens;
+    use HasFactory, Notifiable, SoftDeletes;
 
     protected $fillable = [
         'first_name',
@@ -20,6 +19,7 @@ class User extends Authenticatable
         'password',
         'phone',
         'address',
+        'is_active',
     ];
 
     protected $hidden = [
@@ -29,23 +29,24 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'is_active'         => 'boolean',
     ];
 
-    // Emprunts réalisés par l'utilisateur (membre)
-    public function loans(): HasMany
+    // Prêts émis par ce bibliothécaire
+    public function issuedLoans(): HasMany
     {
-        return $this->hasMany(Loan::class, 'user_id');
+        return $this->hasMany(Loan::class, 'issued_by');
     }
 
-    // Pénalités liées à l'utilisateur (comme débiteur)
-    public function fines(): HasMany
+    // Pénalités émises par ce bibliothécaire
+    public function issuedFines(): HasMany
     {
-        return $this->hasMany(Fine::class, 'user_id');
+        return $this->hasMany(Fine::class, 'issued_by');
     }
 
-    // Réservations faites par l'utilisateur
-    public function reservations(): HasMany
+    // Pénalités encaissées / traitées par ce bibliothécaire
+    public function handledFines(): HasMany
     {
-        return $this->hasMany(Reservation::class, 'user_id');
+        return $this->hasMany(Fine::class, 'handled_by');
     }
 }
